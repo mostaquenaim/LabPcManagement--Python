@@ -124,7 +124,7 @@ class PC :
         else:
             fn=input("Which funtionality you want to see: ")
             fn.lower()
-            if fn!='status' or fn!='os':
+            while fn!='status' and fn!='os':
                 fn=input("Choose either 'os' or 'status': ")
                 fn.lower()
 
@@ -138,6 +138,7 @@ class PC :
         """This method is for storing all the PCs added"""
         filename=input("Your file name(add .txt): ")
 
+
         while filename[-4:]!='.txt':
             filename=input("Add .txt at the end of your file name): ")
         try:
@@ -149,11 +150,16 @@ class PC :
                         file.write(f"PC number:{pc_no}\n", )
                         file.writelines(f"OS:{pc_function['os']}\n", )
                         file.writelines(f"Status:{pc_function['status']}\n", )
-                    #  file.write(f"Operating system: {pc_functionality[0]}" )
-                        # file.write(f"Status: {pc_functionality[1]}")
                         file.write("\n")
+                    file.close()
 
                     print("\nAll the PCs stored in file\n")
+                    o=input("To see the stored details press 1: ")
+                    if o=='1':
+                        #print("in")
+                        with open(filename) as file:
+                            for line in file:
+                                print(line)
         except FileNotFoundError: 
             print("Sorry, file not found")
 
